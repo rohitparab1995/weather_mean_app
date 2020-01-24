@@ -10,7 +10,6 @@ import { Wformat } from '../weather.model';
 export class WeatherComponent implements OnInit {
 
   val = '';
-  updatedDate: Date;
   weatherFetch: any;
   error: any;
 
@@ -20,7 +19,6 @@ export class WeatherComponent implements OnInit {
   constructor(private weatherservice: WeatherService) {}
 
   func(val) {
-    this.updatedDate = new Date();
     this.weatherservice.getWeatherFromAPI(val).subscribe(
       climate => {
       this.weatherFetch = climate;

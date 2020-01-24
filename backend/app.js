@@ -14,35 +14,27 @@ mongoose.connect('mongodb://localhost/myapp', { useNewUrlParser: true, useUnifie
 });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers", "Content-Type"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST"
-  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
   next();
 });
 
 app.post("/api/storeWeather", (req, res, next) => {
-  const post = new Weather({
+    const post = new Weather({
     city: req.body.city,
     temp: req.body.temp,
     lat: req.body.lat,
     lon: req.body.lon,
     curdate : new Date()
-  });
-  post.save().then(createdWeather => {
-    res.status(201).json({
-      message: "Data added successfully",
-      weatherId: createdWeather._id
     });
-  });
-
+    post.save().then(() => {
+      res.status(201).json({
+      message: "Data added successfully"
+      });
+    });
 });
 
 module.exports = app;
