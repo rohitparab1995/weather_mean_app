@@ -1,0 +1,25 @@
+<br>
+<div align="center">
+  <form>
+    <input type="text" [(ngModel)] = "val" name = "inputcity" placeholder="Enter City Name"/>
+    <br>
+    <div *ngIf="error">
+      {{ error }}
+    </div>
+    <button class = "button" (click) = "func(val)">Find Weather Details</button>
+  </form>
+</div>
+<br>
+<hr>
+<div align = "center" *ngIf="weatherFetch">
+  <div *ngIf="!error">
+    <h2 style="font-family: 'Courier New', Courier, monospace;">Temperature : {{ weatherFetch.main.temp }} &nbsp;&#8451;</h2>
+    <br>
+    <i>Latitude : {{ weatherFetch.coord.lat }} &nbsp;&nbsp;&nbsp;&nbsp;    Longitude : {{ weatherFetch.coord.lon }}</i>
+    <br>
+    Date : {{ updatedDate | date }}<br><br>
+    <hr>
+    <button class = "button" (click) = "onSave()">Save Details</button>
+  </div>
+</div>
+
