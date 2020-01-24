@@ -29,7 +29,6 @@ app.use((req, res, next) => {
 });
 
 app.post("/api/storeWeather", (req, res, next) => {
-
   const post = new Weather({
     city: req.body.city,
     temp: req.body.temp,
